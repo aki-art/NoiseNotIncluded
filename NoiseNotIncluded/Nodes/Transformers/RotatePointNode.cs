@@ -9,40 +9,40 @@ using System.Numerics;
 
 namespace NoiseNotIncluded.Nodes.Transformers
 {
-  public class RotatePointNode : TransformerNode
-  {
-    protected override Transformer.TransformerType TransformerType => Transformer.TransformerType.RotatePoint;
+	public class RotatePointNode : TransformerNode
+	{
+		protected override Transformer.TransformerType TransformerType => Transformer.TransformerType.RotatePoint;
 
-    public ValueNodeInputViewModel<Vector2> Rotation { get; } = NodeHelpers.CreateVector2Editor("Rotation", 0f, 0f);
+		public ValueNodeInputViewModel<Vector2> Vector { get; } = NodeHelpers.CreateVector2Editor("Vector", 0f, 0f);
 
-    public RotatePointNode() : base()
-    {
-      Name = $"RotatePoint_{Uuid()}";
+		public RotatePointNode() : base()
+		{
+			Name = $"RotatePoint_{Uuid()}";
 
-      Inputs.Add(Rotation);
+			Inputs.Add(Vector);
 
-      RegisterOutputValue(this.WhenAnyObservable(v => v.SelectNode.ValueChanged,
-                                           v => v.Rotation.ValueChanged,
-                                           (_1, _2) => GetNewOutput()));
-    }
+			RegisterOutputValue(this.WhenAnyObservable(v => v.SelectNode.ValueChanged,
+												 v => v.Vector.ValueChanged,
+												 (_1, _2) => GetNewOutput()));
+		}
 
-    static RotatePointNode()
-    {
-      Splat.Locator.CurrentMutable.Register(() => GetNodeView(), typeof(IViewFor<RotatePointNode>));
-    }
+		static RotatePointNode()
+		{
+			Splat.Locator.CurrentMutable.Register(() => GetNodeView(), typeof(IViewFor<RotatePointNode>));
+		}
 
-    protected override IModule GetNewOutput()
-    {
-      if (SelectNode.Value == null || Rotation.Value == null) return null;
+		protected override IModule GetNewOutput()
+		{
+			if (SelectNode.Value == null || Vector.Value == null) return null;
 
-      return new RotatePoint(SelectNode.Value, Rotation.Value.X, Rotation.Value.Y, 0f);
-    }
+			return new RotatePoint(SelectNode.Value, Vector.Value.X, Vector.Value.Y, 0f);
+		}
 
-    public override NoiseBase GetYamlNode()
-    {
-      var result = base.GetYamlNode() as Transformer;
-      result.rotation = Rotation.Value;
-      return result;
-    }
-  }
+		public override NoiseBase GetYamlNode()
+		{
+			var result = base.GetYamlNode() as Transformer;
+			result.vector = Vector.Value;
+			return result;
+		}
+	}
 }

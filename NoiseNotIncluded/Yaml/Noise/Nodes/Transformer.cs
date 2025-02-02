@@ -18,7 +18,7 @@ namespace NoiseNotIncluded.Yaml.Noise.Nodes
 
 	public TransformerType transformerType { get; set; }
 	public float? power { get; set; }
-	public Vector2 rotation { get; set; }
+	public Vector2 vector { get; set; }
 
     public override NodeViewModel CreateModel()
     {
@@ -35,7 +35,7 @@ namespace NoiseNotIncluded.Yaml.Noise.Nodes
           break;
         case TransformerType.RotatePoint:
           var rotationNode = new RotatePointNode();
-          (rotationNode.Rotation.Editor as Vector2EditorViewModel).Value = rotation;
+          (rotationNode.Vector.Editor as Vector2EditorViewModel).Value = vector;
           result = rotationNode;
           break;
       }
