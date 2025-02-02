@@ -1,14 +1,21 @@
 # NoiseNotIncluded
 An Oxygen Not Included biome noise editor and previewer.
 
+Created by Heinermann, currently maintained by aki-art.
+
 ## Development
 ### Remaining tasks (TODO)
 - Be able to load a biome file and select the sub-biome.
 - Use the elements of the biome file to render a preview on the TERMINATOR node.
 - Use the elements of the biome file to render their bands and range at the bottom.
-- Improve stability, fix major bugs
 - Undo/Redo
-- Add Tests
+- Dark Mode
+- Stop auto-save spam
+- Preview cave override (erosion)
+- Add missing nodes: 
+    - Modifiers: Terrace, Curve
+    - Transformers: Turbulence, Translate, 
+
 
 ### Known Bugs
 - A cycle in the graph will freeze the program
@@ -20,4 +27,5 @@ An Oxygen Not Included biome noise editor and previewer.
 ### Ideas
 - Edit the biome file by drag/drop to rearrange elements in the band
 - Resize the bands by mousing over the border between elements and dragging it like a slider/splitter
+- Add Moonlet specific Nodes with a toggle
 
