@@ -5,26 +5,26 @@ using ReactiveUI;
 
 namespace NoiseNotIncluded.Nodes.Primitives
 {
-  public class SpheresNode : PrimitiveNode
-  {
-    protected override NoisePrimitive PrimitiveType => NoisePrimitive.Spheres;
+	public class SpheresNode : PrimitiveNode
+	{
+		protected override NoisePrimitive PrimitiveType => NoisePrimitive.Spheres;
 
-    public SpheresNode() : base()
-    {
-      Name = $"Spheres_{Uuid()}";
+		public SpheresNode() : base()
+		{
+			Name = $"Spheres_{Uuid()}";
 
-      Inputs.Add(Offset);
-    }
+			Inputs.Add(Offset);
+		}
 
-    static SpheresNode()
-    {
-      Splat.Locator.CurrentMutable.Register(() => GetNodeView(), typeof(IViewFor<SpheresNode>));
-    }
+		static SpheresNode()
+		{
+			Splat.Locator.CurrentMutable.Register(() => GetNodeView(), typeof(IViewFor<SpheresNode>));
+		}
 
-    protected override IModule GetNewOutput()
-    {
-      if (Offset.Value == null) return null;
-      return new Spheres(Offset.Value.Value);
-    }
-  }
+		protected override IModule GetNewOutput()
+		{
+			if (Offset.Value == null) return null;
+			return new Spheres(Offset.Value.Value);
+		}
+	}
 }

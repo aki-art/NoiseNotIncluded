@@ -1,23 +1,23 @@
 ﻿
 namespace NoiseNotIncluded.Yaml
 {
-  public class Link
-  {
-	public enum Type
+	public class Link
 	{
-	  None,
-	  Primitive,
-	  Filter,
-	  Transformer,
-	  Selector,
-	  Modifier,
-	  Combiner,
-	  FloatPoints,
-	  ControlPoints,
-	  Terminator
-	}
+		public enum Type
+		{
+			None,
+			Primitive,
+			Filter,
+			Transformer,
+			Selector,
+			Modifier,
+			Combiner,
+			FloatPoints,
+			ControlPoints,
+			Terminator
+		}
 
-	public Type type { get; set; }
-	public string name { get; set; }
-  }
+		public Type type { get; set; }
+		public string name { get; set; }
+	}
 }

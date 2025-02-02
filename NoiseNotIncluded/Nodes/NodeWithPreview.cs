@@ -10,38 +10,38 @@ using System;
 
 namespace NoiseNotIncluded.Nodes
 {
-  public abstract class NodeWithPreview : NodeViewModel
-  {
-    OutputPreviewModel OutputPreview { get; } = new OutputPreviewModel();
+	public abstract class NodeWithPreview : NodeViewModel
+	{
+		OutputPreviewModel OutputPreview { get; } = new OutputPreviewModel();
 
-    public ValueNodeOutputViewModel<IModule> NodeOutput { get; }
+		public ValueNodeOutputViewModel<IModule> NodeOutput { get; }
 
-    public abstract Link.Type NodeType { get; }
+		public abstract Link.Type NodeType { get; }
 
-    public NodeWithPreview() : base()
-    {
-      NodeOutput = new ValueNodeOutputViewModel<IModule>()
-      {
-        Name = "Output",
-        Editor = OutputPreview
-      };
+		public NodeWithPreview() : base()
+		{
+			NodeOutput = new ValueNodeOutputViewModel<IModule>()
+			{
+				Name = "Output",
+				Editor = OutputPreview
+			};
 
-      Outputs.Add(NodeOutput);
-    }
+			Outputs.Add(NodeOutput);
+		}
 
-    public void RegisterOutputValue(IObservable<IModule> observable)
-    {
-      NodeOutput.Value = observable;
-      NodeOutput.Value.Subscribe(module => OutputPreview.Value = module);
-    }
+		public void RegisterOutputValue(IObservable<IModule> observable)
+		{
+			NodeOutput.Value = observable;
+			NodeOutput.Value.Subscribe(module => OutputPreview.Value = module);
+		}
 
-    protected abstract IModule GetNewOutput();
+		protected abstract IModule GetNewOutput();
 
-    public abstract NoiseBase GetYamlNode();
+		public abstract NoiseBase GetYamlNode();
 
-    public static string Uuid()
-    {
-      return NodeHelpers.UUID64().Substring(0, 8);
-    }
-  }
+		public static string Uuid()
+		{
+			return NodeHelpers.UUID64().Substring(0, 8);
+		}
+	}
 }

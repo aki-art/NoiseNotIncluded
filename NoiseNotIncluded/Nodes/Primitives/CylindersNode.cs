@@ -5,26 +5,26 @@ using ReactiveUI;
 
 namespace NoiseNotIncluded.Nodes.Primitives
 {
-  public class CylindersNode : PrimitiveNode
-  {
-    protected override NoisePrimitive PrimitiveType => NoisePrimitive.Cylinders;
+	public class CylindersNode : PrimitiveNode
+	{
+		protected override NoisePrimitive PrimitiveType => NoisePrimitive.Cylinders;
 
-    public CylindersNode() : base()
-    {
-      Name = $"Cylinders_{Uuid()}";
+		public CylindersNode() : base()
+		{
+			Name = $"Cylinders_{Uuid()}";
 
-      Inputs.Add(Offset);
-    }
+			Inputs.Add(Offset);
+		}
 
-    static CylindersNode()
-    {
-      Splat.Locator.CurrentMutable.Register(() => GetNodeView(), typeof(IViewFor<CylindersNode>));
-    }
+		static CylindersNode()
+		{
+			Splat.Locator.CurrentMutable.Register(() => GetNodeView(), typeof(IViewFor<CylindersNode>));
+		}
 
-    protected override IModule GetNewOutput()
-    {
-      if (Offset.Value == null) return null;
-      return new Cylinders(Offset.Value.Value);
-    }
-  }
+		protected override IModule GetNewOutput()
+		{
+			if (Offset.Value == null) return null;
+			return new Cylinders(Offset.Value.Value);
+		}
+	}
 }

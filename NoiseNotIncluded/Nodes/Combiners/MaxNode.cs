@@ -5,25 +5,25 @@ using ReactiveUI;
 
 namespace NoiseNotIncluded.Nodes.Combiners
 {
-  public class MaxNode : CombinerNode
-  {
-    protected override Combiner.CombinerType CombineType => Combiner.CombinerType.Max;
+	public class MaxNode : CombinerNode
+	{
+		protected override Combiner.CombinerType CombineType => Combiner.CombinerType.Max;
 
-    public MaxNode() : base()
-    {
-      Name = $"Max_{Uuid()}";
-    }
-    
-    static MaxNode()
-    {
-      Splat.Locator.CurrentMutable.Register(() => GetNodeView(), typeof(IViewFor<MaxNode>));
-    }
+		public MaxNode() : base()
+		{
+			Name = $"Max_{Uuid()}";
+		}
 
-    protected override IModule GetNewOutput()
-    {
-      if (LeftInput.Value == null || RightInput.Value == null) return null;
+		static MaxNode()
+		{
+			Splat.Locator.CurrentMutable.Register(() => GetNodeView(), typeof(IViewFor<MaxNode>));
+		}
 
-      return new Max(LeftInput.Value, RightInput.Value);
-    }
-  }
+		protected override IModule GetNewOutput()
+		{
+			if (LeftInput.Value == null || RightInput.Value == null) return null;
+
+			return new Max(LeftInput.Value, RightInput.Value);
+		}
+	}
 }

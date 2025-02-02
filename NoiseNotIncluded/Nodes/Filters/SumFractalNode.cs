@@ -5,29 +5,29 @@ using ReactiveUI;
 
 namespace NoiseNotIncluded.Nodes.Filters
 {
-  public class SumFractalNode : FilterNode
-  {
-    protected override NoiseFilter FilterType => NoiseFilter.SumFractal;
+	public class SumFractalNode : FilterNode
+	{
+		protected override NoiseFilter FilterType => NoiseFilter.SumFractal;
 
-    // Lacunarity, Frequency, Octaves
+		// Lacunarity, Frequency, Octaves
 
-    public SumFractalNode() : base()
-    {
-      Name = $"SumFractal_{Uuid()}";
+		public SumFractalNode() : base()
+		{
+			Name = $"SumFractal_{Uuid()}";
 
-      Inputs.Add(Lacunarity);
-      Inputs.Add(Frequency);
-      Inputs.Add(Octaves);
-    }
+			Inputs.Add(Lacunarity);
+			Inputs.Add(Frequency);
+			Inputs.Add(Octaves);
+		}
 
-    static SumFractalNode()
-    {
-      Splat.Locator.CurrentMutable.Register(() => GetNodeView(), typeof(IViewFor<SumFractalNode>));
-    }
+		static SumFractalNode()
+		{
+			Splat.Locator.CurrentMutable.Register(() => GetNodeView(), typeof(IViewFor<SumFractalNode>));
+		}
 
-    protected override IModule GetNewOutput()
-    {
-      return new SumFractal();
-    }
-  }
+		protected override IModule GetNewOutput()
+		{
+			return new SumFractal();
+		}
+	}
 }

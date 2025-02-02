@@ -8,40 +8,40 @@ using ReactiveUI;
 
 namespace NoiseNotIncluded.Nodes.Modifiers
 {
-  public class ExponentNode : ModifierNode
-  {
-    protected override Modifier.ModifyType ModifyType => Modifier.ModifyType.Exponent;
+	public class ExponentNode : ModifierNode
+	{
+		protected override Modifier.ModifyType ModifyType => Modifier.ModifyType.Exponent;
 
-    public ValueNodeInputViewModel<float?> Exponent { get; } = NodeHelpers.CreateFloatEditor("Exponent", 0.02f);
+		public ValueNodeInputViewModel<float?> Exponent { get; } = NodeHelpers.CreateFloatEditor("Exponent", 0.02f);
 
-    public ExponentNode() : base()
-    {
-      Name = $"Exponent_{Uuid()}";
-      
-      Inputs.Add(Exponent);
+		public ExponentNode() : base()
+		{
+			Name = $"Exponent_{Uuid()}";
 
-      RegisterOutputValue(this.WhenAnyObservable(v => v.NodeInput.ValueChanged,
-                                                 v => v.Exponent.ValueChanged,
-                                                 (_1, _2) => GetNewOutput()));
-    }
+			Inputs.Add(Exponent);
 
-    static ExponentNode()
-    {
-      Splat.Locator.CurrentMutable.Register(() => GetNodeView(), typeof(IViewFor<ExponentNode>));
-    }
+			RegisterOutputValue(this.WhenAnyObservable(v => v.NodeInput.ValueChanged,
+													   v => v.Exponent.ValueChanged,
+													   (_1, _2) => GetNewOutput()));
+		}
 
-    protected override IModule GetNewOutput()
-    {
-      if (NodeInput.Value == null || Exponent.Value == null) return null;
+		static ExponentNode()
+		{
+			Splat.Locator.CurrentMutable.Register(() => GetNodeView(), typeof(IViewFor<ExponentNode>));
+		}
 
-      return new Exponent(NodeInput.Value, Exponent.Value.GetValueOrDefault(0.02f));
-    }
+		protected override IModule GetNewOutput()
+		{
+			if (NodeInput.Value == null || Exponent.Value == null) return null;
 
-    public override NoiseBase GetYamlNode()
-    {
-      var result = base.GetYamlNode() as Modifier;
-      result.exponent = Exponent.Value;
-      return result;
-    }
-  }
+			return new Exponent(NodeInput.Value, Exponent.Value.GetValueOrDefault(0.02f));
+		}
+
+		public override NoiseBase GetYamlNode()
+		{
+			var result = base.GetYamlNode() as Modifier;
+			result.exponent = Exponent.Value;
+			return result;
+		}
+	}
 }

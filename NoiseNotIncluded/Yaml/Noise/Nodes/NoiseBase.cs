@@ -5,14 +5,14 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace NoiseNotIncluded.Yaml.Noise.Nodes
 {
-  public abstract class NoiseBase
-  {
-    [PropertyOrder(0)]
-    public string name { get; set; } = "Untitled";
+	public abstract class NoiseBase
+	{
+		[PropertyOrder(0)]
+		public string name { get; set; } = "Untitled";
 
-    [Browsable(false)]
-    public Point pos { get; set; }
+		[Browsable(false)]
+		public Point pos { get; set; }
 
-    public abstract NodeViewModel CreateModel();
-  }
+		public abstract NodeViewModel CreateModel();
+	}
 }
